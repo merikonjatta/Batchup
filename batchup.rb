@@ -155,6 +155,8 @@ module Batchup
   # Perform one of the main backup commands.
   def do_command(command, source, target_file)
     case command
+    when Proc
+      command.call
     when :tar
       say_and_do("tar czpf \"#{target_file}.tgz\" \"#{source}\"")
     when :rsync

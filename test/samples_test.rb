@@ -20,5 +20,16 @@ class BatchupSamplesTest < Test::Unit::TestCase
       }
       Batchup.run(settings)
     end
+
+    should "proc" do
+      settings = {
+        "proc sample" => {
+          :command => { |source, target| puts source; puts target },
+          :source => source_dir,
+          :target => target_dir,
+        }
+      }
+      Batchup.run(settings)
+    end
   end
 end
