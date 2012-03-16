@@ -17,12 +17,20 @@ module Batchup
     end
 
     def pristine_dirs
+      pristine_source_dir
+      pristine_target_dir
+    end
+
+    def pristine_source_dir
       Dir[source_dir+"/*"].each { |entry| FileUtils.rm_rf(entry) }
       FileUtils.mkdir(source_dir+"/one")
       File.open(source_dir+"/one/a.txt", "w+") { |f| f.write("file one/a") }
       File.open(source_dir+"/one/b.txt", "w+") { |f| f.write("file one/b") }
       File.open(source_dir+"/one/c.txt", "w+") { |f| f.write("file one/c") }
       File.open(source_dir+"/two.txt", "w+") { |f| f.write("file two") }
+    end
+
+    def pristine_target_dir
       Dir[target_dir+"/*"].each { |entry| FileUtils.rm_rf(entry) }
     end
 
