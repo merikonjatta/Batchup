@@ -14,7 +14,7 @@ settings = {
   },
   "redmine" => {
     :rotate => 10,
-    :command => :tar,
+    :command => lambda { |source, target| Batchup.say_and_do %Q[rsync -a "#{source}" "#{target}"] },
     :source => "/home/marco/sites/redmine",
     :target => "/mnt/hgfs/naboo/Dumps/redmine",
   }

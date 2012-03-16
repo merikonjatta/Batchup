@@ -24,7 +24,7 @@ class BatchupSamplesTest < Test::Unit::TestCase
     should "proc" do
       settings = {
         "proc sample" => {
-          :command => { |source, target| puts source; puts target },
+          :command => lambda { |source, target| Batchup.say_and_do %Q[rsync -a "#{source}" "#{target}"] },
           :source => source_dir,
           :target => target_dir,
         }

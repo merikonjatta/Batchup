@@ -156,7 +156,7 @@ module Batchup
   def do_command(command, source, target_file)
     case command
     when Proc
-      command.call
+      command.call(source, target_file)
     when :tar
       say_and_do("tar czpf \"#{target_file}.tgz\" \"#{source}\"")
     when :rsync
